@@ -8,16 +8,16 @@ import { Provider } from 'react-redux';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import App from './App';
 import { name as appName } from './app.json';
-import store from './app/store';
+import store from './app/store/store';
 
-const httpLink = createHttpLink({
+export const httpLink = createHttpLink({
   uri: 'https://bateeqshop.myshopify.com/api/2023-04/graphql.json',
   headers: {
     'X-Shopify-storefront-Access-Token': '495ecfe37736105432f1550487fd9028',
   },
 });
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   link: httpLink,
   cache: new InMemoryCache(),
 });
