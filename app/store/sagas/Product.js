@@ -44,23 +44,24 @@ export function* __productSearch(){
                                 }
                             }
                         }
+                        options(first: 2) {
+                            values
+                        }
                     }
                 }
             }`
 
             let response = yield call(client.query, {query:gql1,variables: { first:payload?.first ?? 10, query:payload?.query }});
-            response = response?.data?.product?.nodes ?? []
+
+            let newPayload = {}
+            Reflect.set(newPayload,'data',response?.data?.products?.nodes ?? [])
+            Reflect.set(newPayload,'query',payload?.query)
+
 
             yield put({
                 type:SUCCESS(GET_PROD_COLL_SEARCH),
-                payload:response
+                payload: newPayload
             })
-            // CALLBACK AFTER CALL SERVICES
-            // yield all([
-            //     put({
-            //         type:SUCCESS(GET_PROD_COLL_SEARCH)
-            //     })
-            // ])
         }catch(err){
             yield put({
                 type:FAILURE(GET_PROD_COLL_SEARCH)

@@ -1,35 +1,52 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { createSlice } from "@reduxjs/toolkit";
+/* eslint-disable no-param-reassign */
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { createSlice } from '@reduxjs/toolkit';
 
 const userSlice = createSlice({
-    name: 'user',
-    initialState: {
-        isLogin: false,
-        getToken: '',
+  name: 'user',
+  initialState: {
+    isLogin: false,
+    getToken: '',
+    userAddress: '',
+    customerInfo: {
+      id: '',
+      email: '',
+      first_name: '',
+      last_name: '',
+      phone: '',
     },
-    reducers: {
-        setIsLogin: (state, action) => {
-            state.isLogin = action.payload
-        },
-        getToken: async (state) => {
-            const token =  await AsyncStorage.getItem('accessToken')
-            state.getToken = token
-            return token
-        }
-    }
-})
+    defaultAddress: '',
+  },
+  reducers: {
+    setIsLogin: (state, action) => {
+      state.isLogin = action.payload;
+    },
+    setToken: (state, action) => {
+      state.getToken = action.payload;
+    },
+    setAddress: (state, action) => {
+      state.userAddress = action.payload;
+    },
+    setDefaultAddress: (state, action) => {
+      state.defaultAddress = action.payload;
+    },
+    setCustomerInfo: (state, action) => {
+      state.customerInfo = action.payload;
+    },
+  },
+});
 
 const sidebarSlice = createSlice({
-    name: 'sidebar',
-    initialState: {
-        isOpen: false
+  name: 'sidebar',
+  initialState: {
+    isOpen: false,
+  },
+  reducers: {
+    setIsOpen: (state, action) => {
+      state.isOpen = action.payload;
     },
-    reducers: {
-        setIsOpen: (state, action) => {
-            state.isOpen = action.payload
-        }
-    }
-})
+  },
+});
 
 const cartSlice = createSlice({
     name: 'cart',
@@ -64,14 +81,28 @@ const cartSlice = createSlice({
     }
 })
 
-export const { setIsOpen } = sidebarSlice.actions
-export const { setCartId, getCartId, setCartData } = cartSlice.actions
-export const { setIsLogin, getToken } = userSlice.actions
+const checkoutSlice = createSlice({
+  name: 'checkout',
+  initialState: {
+    checkoutData: '',
+  },
+  reducers: {
+    setCheckoutData: (state, action) => {
+      state.checkoutData = action.payload;
+    },
+  },
+});
+
+export const { setIsOpen } = sidebarSlice.actions;
+export const { setCartId, getCartId, setCartData } = cartSlice.actions;
+export const { setIsLogin, setToken, setAddress, setCustomerInfo, setDefaultAddress } = userSlice.actions;
+export const { setCheckoutData } = checkoutSlice.actions;
 
 const rootReducer = {
-    sidebar: sidebarSlice.reducer,
-    cart: cartSlice.reducer,
-    user: userSlice.reducer
-}
+  sidebar: sidebarSlice.reducer,
+  cart: cartSlice.reducer,
+  user: userSlice.reducer,
+  checkout: checkoutSlice.reducer,
+};
 
-export default rootReducer
+export default rootReducer;

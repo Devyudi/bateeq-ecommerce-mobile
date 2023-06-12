@@ -36,7 +36,6 @@ export default function (state = initialState, action){
                 }
             }
         case SUCCESS(GET_PROD_COLL_SEARCH):
-            console.log({payload})
             return {
                 ...state,
                 collections:  {
@@ -44,8 +43,8 @@ export default function (state = initialState, action){
                     search: {
                         ...state.collections.search,
                         loading: false,
-                        // query: payload?.query ?? "",
-                        // data: [...payload?.data]
+                        query: payload?.query ?? "",
+                        data: [...payload?.data]
                     }
                 }
             }

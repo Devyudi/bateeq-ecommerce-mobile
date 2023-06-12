@@ -11,7 +11,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import {REQUEST, SUCCESS,FAILURE} from "../actions/action.type";
 export function* __cartGenerateId(){
     yield takeEvery(REQUEST(GENERATE_CART_ID), function*({payload}){
-        try{
+        try {
             if(payload?.id){
                 AsyncStorage.setItem('cart', payload?.id)
             }

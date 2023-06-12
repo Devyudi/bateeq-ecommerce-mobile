@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.14",
+    "@apollo/react-hooks": "^4.0.0",
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
     "@react-native-async-storage/async-storage": "^1.18.1",
     "@react-native-community/checkbox": "^0.5.14",
@@ -62,6 +63,8 @@
     "react-native-vector-icons": "^9.2.0",
     "react-native-webview": "^11.26.1",
     "react-redux": "^8.0.5",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-saga": "^1.2.3",
     "yup": "^1.1.1"
   },
   "devDependencies": {
