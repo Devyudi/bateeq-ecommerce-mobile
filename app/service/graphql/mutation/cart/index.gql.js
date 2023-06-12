@@ -9,6 +9,7 @@ mutation cartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
     cartLinesUpdate(cartId: $cartId, lines: $lines) {
         cart {
             id
+            totalQuantity
         }
         userErrors {
             field
@@ -117,7 +118,7 @@ export const GET_CART_LIST = gql`
         }
     }
 `
-export const GQL_GET_CART_LIST = `
+export const GQL_GET_CART_LIST = gql`
     query GetProductInCart($first:Int!,$id: ID!){
         cart(id: $id){
             id

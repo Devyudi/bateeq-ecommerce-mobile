@@ -114,6 +114,4 @@ const Header = (props) => {
 
 
 
-export default connect(({Cart})=> {
-    return {cart:Cart}
-},{})(React.memo(Header))
+export default Header;

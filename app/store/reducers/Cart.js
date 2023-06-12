@@ -64,7 +64,6 @@ export default function(state = initialState, action){
                 ...state,
                 options : {
                     ...state.options,
-                    // loading: true,
                     cartId: action?.payload
                 }
             }
@@ -78,7 +77,27 @@ export default function(state = initialState, action){
                 }
             }
 
+        case REQUEST(DELETE_CART_LIST_OF_ITEM):
+            if(Array.isArray(action?.payload?.lineIds) && action?.payload?.lineIds.length > 0){
+                for(let i=0;i<state.lists.data.length;i++){
+                    if(typeof(state.lists.data[i]) !== 'undefined'){
+                        let item = state.lists.data[i]
+                        let filtered = action?.payload?.lineIds.filter((str)=> str === item?.id)
+                        if(filtered.length > 0){
+                            state.lists.data[i].loading = true
+                        }
+                    }
+                }
+            }
+            return {
+                ...state,
+                lists: {
+                    ...state.lists,
+                    data: [...state.lists.data]
+                }
+            }
         case SUCCESS(DELETE_CART_LIST_OF_ITEM):
+            console.log({action,type})
             if(action?.payload?.id){
                 state.lists.data = [...state.lists.data.filter((item)=> item?.id !== action?.payload?.id)]
             }
@@ -104,6 +123,12 @@ export default function(state = initialState, action){
                 }
             }
         case SUCCESS(GET_CART_LIST):
+            if(Array.isArray(action?.payload?.data) && action?.payload?.data.length>0){
+                state.lists.data = action?.payload?.data.map((item)=> ({
+                    ...item,
+                    loading: false
+                })) ?? []
+            }
             return {
                 ...state,
                 options: {
@@ -113,7 +138,7 @@ export default function(state = initialState, action){
                 lists: {
                     ...state.lists,
                     loading:false,
-                    data: [...action?.payload?.data]
+                    data: [...state.lists.data]
                 }
             }
         case FAILURE(GET_CART_LIST):
@@ -186,9 +211,9 @@ export default function(state = initialState, action){
                 }
             }
         case SUCCESS(PUT_CART_QTY_ITEM):
-            if(action?.payload?.merchandiseId && action?.payload?.id && action?.payload?.quantity){
+            if(action?.payload?.id && action?.payload?.quantity){
                 let { quantity, merchandiseId, id } = action?.payload
-                let indexed = state.lists.data.findIndex((child)=> child?.id === id)
+                let indexed = state.lists.data.findIndex((child)=> child?.merchandise?.id === merchandiseId)
                 if(indexed>=0){
                     state.lists.data[indexed].quantity = quantity ?? state.lists.data[indexed].quantity ?? 0
                 }

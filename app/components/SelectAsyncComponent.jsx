@@ -11,12 +11,13 @@ function AsyncSelectComponent({
   onChange = () => {},
   customDetail,
   errors = {},
+  value = '',
   name,
   isEdit = true,
 }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState(value);
   const [filteredOptions, setFilteredOptions] = useState(options);
 
   const handleSelect = option => {
@@ -44,7 +45,7 @@ function AsyncSelectComponent({
       </Text>
       <View style={styles.inputContainer}>
         <TextInput
-          style={isEdit ? styles.select : { ...styles.select, backgroundColor: '#aeaeae' }}
+          style={isEdit ? styles.select : { ...styles.select, backgroundColor: COLORS.dark }}
           placeholder={placeholder ?? label}
           onChangeText={handleInputChange}
           onTouchStart={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -119,9 +120,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: COLORS.title,
   },
-  selectText: {
-    color: COLORS.text,
-  },
   optionsContainer: {
     marginTop: 5,
     backgroundColor: COLORS.input,
@@ -152,6 +150,6 @@ const styles = StyleSheet.create({
     color: COLORS.white,
   },
   error: {
-    color: 'red',
+    color: COLORS.danger,
   },
 });

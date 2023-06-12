@@ -8,6 +8,8 @@ import SplashScreen from '../components/SplashScreen';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {connect, useSelector} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import DrawerNavigation from "./DrawerNavigation";
+import BottomNavigation from "./BottomNavigation";
 
 const Routes = (props) => {
   let { isLogin } = props

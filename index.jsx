@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import App from './App';
 import { name as appName } from './app.json';
+
 import store from './app/store/store';
 
 export const httpLink = createHttpLink({

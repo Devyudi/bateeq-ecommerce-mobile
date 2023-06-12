@@ -6,7 +6,7 @@ import Onboarding from '../Screens/Onboarding/Onboarding';
 import Welcome from '../Screens/Onboarding/Welcome';
 import SignUp from '../Screens/Auth/SignUp';
 import SignIn from '../Screens/Auth/SignIn';
-import Products from '../Screens/Products/Products';
+import Products from '../Screens/Products/PopularItems';
 import DrawerNavigation from './DrawerNavigation';
 import ProductDetail from '../Screens/Products/ProductDetail';
 import Featured from '../Screens/Featured/Featured';
@@ -16,39 +16,39 @@ import Wishlist from '../Screens/Wishlist/Wishlist';
 import Profile from '../Screens/Account/Profile';
 import EditProfile from '../Screens/Account/EditProfile';
 import Coupons from '../Screens/Account/Coupons';
-import Address from '../Screens/Account/Address';
-import AddDeliveryAddress from '../Screens/Account/AddDeliveryAddress';
+import Address from '../Screens/Account/Address/Address';
+import AddDeliveryAddress from '../Screens/Account/Address/Add';
 import Filter from '../Screens/Filter/Filter';
 import Items from '../Screens/Items/Items';
 import CategoryHome from '../Screens/Categories/CategoryHome';
 import Search from '../Screens/Search/Search';
 import Payment from '../Screens/Delivery/Payment';
-import Components from '../Screens/Components/Components';
-import AccordionScreen from '../Screens/Components/Accordion';
-import ActionSheet from '../Screens/Components/ActionSheet';
-import Buttons from '../Screens/Components/Buttons';
-import Inputs from '../Screens/Components/Inputs';
-import ActionModals from '../Screens/Components/ActionModals';
-import Charts from '../Screens/Components/Charts';
-import Chips from '../Screens/Components/Chips';
-import CollapseElements from '../Screens/Components/CollapseElements';
-import DividerElements from '../Screens/Components/DividerElements';
-import FileUploads from '../Screens/Components/FileUploads';
-import Headers from '../Screens/Components/Headers';
-import Footers from '../Screens/Components/Footers';
-import TabStyle1 from '../components/Footers/FooterStyle1';
-import TabStyle2 from '../components/Footers/FooterStyle2';
-import TabStyle3 from '../components/Footers/FooterStyle3';
-import TabStyle4 from '../components/Footers/FooterStyle4';
-import ListScreen from '../Screens/Components/Lists';
-import Paginations from '../Screens/Components/Paginations';
-import Pricings from '../Screens/Components/Pricings';
-import Snackbars from '../Screens/Components/Snakbars';
-import PageOurStory from '../Screens/Components/PageOurStory';
-import SwipeableScreen from '../Screens/Components/Swipeable';
-import Tabs from '../Screens/Components/Tabs';
-import Tables from '../Screens/Components/Tables';
-import Toggles from '../Screens/Components/Toggles';
+import Components from '../component-template/Components';
+import AccordionScreen from '../component-template/Accordion';
+import ActionSheet from '../component-template/ActionSheet';
+import Buttons from '../component-template/Buttons';
+import Inputs from '../component-template/Inputs';
+import ActionModals from '../component-template/ActionModals';
+import Charts from '../component-template/Charts';
+import Chips from '../component-template/Chips';
+import CollapseElements from '../component-template/CollapseElements';
+import DividerElements from '../component-template/DividerElements';
+import FileUploads from '../component-template/FileUploads';
+import Headers from '../component-template/Headers';
+import Footers from '../component-template/Footers';
+import TabStyle1 from '../component-template/Footers/FooterStyle1';
+import TabStyle2 from '../component-template/Footers/FooterStyle2';
+import TabStyle3 from '../component-template/Footers/FooterStyle3';
+import TabStyle4 from '../component-template/Footers/FooterStyle4';
+import ListScreen from '../component-template/Lists';
+import Paginations from '../component-template/Paginations';
+import Pricings from '../component-template/Pricings';
+import Snackbars from '../component-template/Snakbars';
+import PageOurStory from '../components/PageOurStory';
+import SwipeableScreen from '../components/Swipeable';
+import Tabs from '../component-template/Tabs';
+import Tables from '../component-template/Tables';
+import Toggles from '../component-template/Toggles';
 import Slider from '../Screens/Products/BestSellerProduct';
 import Checkout from '../Screens/Checkout/Checkout';
 import MainHome from '../Screens/Home/MainHome';
@@ -68,10 +68,10 @@ const StackNavigator = ({isAuthenticated}) => {
           cardStyle: {backgroundColor: 'transparent'},
         }}>
         <StackComponent.Screen name="Splash" component={Splash} />
-        <StackComponent.Screen
-          name="DrawerNavigation"
-          component={DrawerNavigation}
-        />
+        {/*<StackComponent.Screen*/}
+        {/*  name="DrawerNavigation"*/}
+        {/*  component={DrawerNavigation}*/}
+        {/*/>*/}
         <StackComponent.Screen name={'Products'} component={Products} />
         <StackComponent.Screen name={'EditProfile'} component={EditProfile} />
         <StackComponent.Screen name={'Address'} component={Address} />

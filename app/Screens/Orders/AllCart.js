@@ -67,12 +67,10 @@ const AllCart = () => {
         })
         .catch((err)=> {
           setLoading(false)
-          console.log({err},'ERROR all cart')
         })
   },[])
   return (
       <View>
-        <Text>{loading ? "Loading...": "stop"}</Text>
         <ScrollView>
 
           {AllCartData.map((data, index) => (

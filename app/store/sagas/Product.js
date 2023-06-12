@@ -6,7 +6,9 @@ import {client} from "../../../index";
 
 
 export function* __productSearch(){
-    yield takeEvery(REQUEST(GET_PROD_COLL_SEARCH),function*({payload}){
+    yield takeEvery(
+        REQUEST(GET_PROD_COLL_SEARCH),
+        function*({payload}){
         try{
 
             const gql1 = gql`query GetProducts($first: Int!, $query: String!) {
@@ -51,7 +53,15 @@ export function* __productSearch(){
                 }
             }`
 
-            let response = yield call(client.query, {query:gql1,variables: { first:payload?.first ?? 10, query:payload?.query }});
+            let response = yield call(
+                client.query,
+                {
+                    query:gql1,
+                    variables: {
+                        first:payload?.first ?? 10,
+                        query:payload?.query
+                    }
+                });
 
             let newPayload = {}
             Reflect.set(newPayload,'data',response?.data?.products?.nodes ?? [])

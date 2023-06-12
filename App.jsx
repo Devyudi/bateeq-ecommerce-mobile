@@ -1,5 +1,6 @@
 import React from 'react';
-import Routes from './app/Navigations/Route'
+import Routes from './app/Navigations/Route';
+
 function App() {
   return <Routes />;
 }

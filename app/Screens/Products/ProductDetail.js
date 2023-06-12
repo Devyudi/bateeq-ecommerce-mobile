@@ -9,8 +9,8 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 import LinearGradient from 'react-native-linear-gradient';
 import Toast from 'react-native-toast-message';
 import { Footer, ShowHideProductDetail } from '../../components/Footer';
-import ProductCardStyle1 from '../../components/ProductCardStyle1';
-import HeaderBateeq from '../../components/Headers/HeaderBateeq';
+import ProductCardStyle1 from '../../components/ProductCardStyle';
+import HeaderBateeq from '../../components/HeaderBateeq';
 import Button from '../../components/CustomButton';
 import SelectInput from '../../components/SelectInput';
 import CustomHTML from '../../components/CustomHtml';
@@ -179,7 +179,7 @@ const ProductDetail = (props) => {
     variant_id : variantId,
     cartId: cartId || ''
   }
-   console.log({body})
+
   schema
   .validate(body, { abortEarly: false })
   .then(async result => {
@@ -219,7 +219,7 @@ const ProductDetail = (props) => {
       })
         Toast.show({
             type: 'success',
-            text1: 'hehehee',
+            text1: 'Success added to cart',
             text2: errors?.originalError?.message
         })
       navigation.navigate('Cart')

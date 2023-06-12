@@ -10,6 +10,7 @@ function Input({
   handleInputChange,
   keyboardType = 'none',
   label = '',
+  value = '',
   errors = {},
   numberOfLines,
   name,
@@ -20,6 +21,7 @@ function Input({
       <TextInput
         keyboardType={keyboardType}
         placeholder={placeholder}
+        defaultValue={value}
         secureTextEntry={secureTextEntry}
         onChangeText={handleInputChange}
         onSubmitEditing={onSubmitEditing}
@@ -40,11 +42,11 @@ export default Input;
 
 const styles = StyleSheet.create({
   error: {
-    color: 'red',
+    color: COLORS.danger,
   },
   textArea: {
     height: 100,
-    borderColor: 'gray',
+    borderColor: COLORS.title,
     borderWidth: 1,
     padding: 10,
   },
