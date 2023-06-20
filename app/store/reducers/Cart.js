@@ -1,22 +1,14 @@
 import {
-    BAD_CART_LINE_ITEM_ADD,
-    BAD_GENERATE_CART_ID,
-    BAD_GET_CART_LIST, BAD_PUT_CART_QTY_ITEM,
-    BAD_PUT_CART_TOTAL_QTY,
-    CART_LINE_ITEM_ADD,
-    DELETE_CART_LIST_OF_ITEM,
+    BAD_PUT_CART_QTY_ITEM,
+    CART_LINE_ITEM_ADD, DELETE_CART_LIST_OF_ITEM,
     GENERATE_CART_ID,
     GET_CART_LIST,
-    OK_CART_LINE_ITEM_ADD,
-    OK_DELETE_CART_LIST_OF_ITEM,
-    OK_GENERATE_CART_ID,
-    OK_GET_CART_LIST,
     OK_PUT_CART_QTY_ITEM,
-    OK_PUT_CART_TOTAL_QTY,
     PUT_CART_QTY_ITEM,
     PUT_CART_TOTAL_QTY
 } from "../constants";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {FAILURE, REQUEST, SUCCESS} from "../actions/action.type";
 
 
 /**
@@ -58,7 +50,7 @@ AsyncStorage.getItem('cart')
 export default function(state = initialState, action){
     let { type } = action
     switch (type){
-        case GENERATE_CART_ID:
+        case REQUEST(GENERATE_CART_ID):
             return {
                 ...state,
                 options: {
@@ -67,7 +59,7 @@ export default function(state = initialState, action){
                 }
 
             }
-        case OK_GENERATE_CART_ID:
+        case SUCCESS(GENERATE_CART_ID):
             return {
                 ...state,
                 options : {
@@ -76,7 +68,7 @@ export default function(state = initialState, action){
                     cartId: action?.payload
                 }
             }
-        case BAD_GENERATE_CART_ID:
+        case FAILURE(GENERATE_CART_ID):
             return {
                 ...state,
                 options: {
@@ -86,7 +78,7 @@ export default function(state = initialState, action){
                 }
             }
 
-        case OK_DELETE_CART_LIST_OF_ITEM:
+        case SUCCESS(DELETE_CART_LIST_OF_ITEM):
             if(action?.payload?.id){
                 state.lists.data = [...state.lists.data.filter((item)=> item?.id !== action?.payload?.id)]
             }
@@ -102,7 +94,7 @@ export default function(state = initialState, action){
                 }
             }
 
-        case GET_CART_LIST:
+        case REQUEST(GET_CART_LIST):
             return {
                 ...state,
                 lists: {
@@ -111,7 +103,7 @@ export default function(state = initialState, action){
                     data: []
                 }
             }
-        case OK_GET_CART_LIST:
+        case SUCCESS(GET_CART_LIST):
             return {
                 ...state,
                 options: {
@@ -124,7 +116,7 @@ export default function(state = initialState, action){
                     data: [...action?.payload?.data]
                 }
             }
-        case BAD_GET_CART_LIST:
+        case FAILURE(GET_CART_LIST):
             return {
                 ...state,
                 lists: {
@@ -134,7 +126,7 @@ export default function(state = initialState, action){
                 }
             }
 
-        case CART_LINE_ITEM_ADD:
+        case REQUEST(CART_LINE_ITEM_ADD):
             return {
                 ...state,
                 options: {
@@ -142,7 +134,7 @@ export default function(state = initialState, action){
                     loading: true,
                 }
             }
-        case OK_CART_LINE_ITEM_ADD:
+        case SUCCESS(CART_LINE_ITEM_ADD):
             return {
                 ...state,
                 options: {
@@ -151,7 +143,7 @@ export default function(state = initialState, action){
                     totalQuantity: action?.payload?.totalQuantity ?? state.options?.totalQuantity ?? 0
                 },
             }
-        case BAD_CART_LINE_ITEM_ADD:
+        case FAILURE(CART_LINE_ITEM_ADD):
             return {
                 ...state,
                 options: {
@@ -160,7 +152,7 @@ export default function(state = initialState, action){
                 }
             }
 
-        case PUT_CART_TOTAL_QTY:
+        case REQUEST(PUT_CART_TOTAL_QTY):
             return {
                 ...state,
                 options: {
@@ -168,7 +160,7 @@ export default function(state = initialState, action){
                     loading:true
                 }
             }
-        case OK_PUT_CART_TOTAL_QTY:
+        case SUCCESS(PUT_CART_TOTAL_QTY):
             return {
                 ...state,
                 options: {
@@ -177,7 +169,7 @@ export default function(state = initialState, action){
                     totalQuantity: action?.payload?.totalQuantity ?? state?.options?.totalQuantity ?? 0
                 }
             }
-        case BAD_PUT_CART_TOTAL_QTY:
+        case FAILURE(PUT_CART_TOTAL_QTY):
             return {
                 ...state,
                 options: {
@@ -185,7 +177,7 @@ export default function(state = initialState, action){
                     loading:false,
                 }
             }
-        case PUT_CART_QTY_ITEM:
+        case REQUEST(PUT_CART_QTY_ITEM):
             return {
                 ...state,
                 options: {
@@ -193,7 +185,7 @@ export default function(state = initialState, action){
                     loading: true,
                 }
             }
-        case OK_PUT_CART_QTY_ITEM:
+        case SUCCESS(PUT_CART_QTY_ITEM):
             if(action?.payload?.merchandiseId && action?.payload?.id && action?.payload?.quantity){
                 let { quantity, merchandiseId, id } = action?.payload
                 let indexed = state.lists.data.findIndex((child)=> child?.id === id)
@@ -213,7 +205,7 @@ export default function(state = initialState, action){
                     data: [ ...state.lists.data ]
                 }
             }
-        case BAD_PUT_CART_QTY_ITEM:
+        case FAILURE(PUT_CART_QTY_ITEM):
             return {
                 ...state,
                 options: {
