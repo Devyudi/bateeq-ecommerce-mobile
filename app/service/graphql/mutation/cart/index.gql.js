@@ -9,7 +9,6 @@ mutation cartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
     cartLinesUpdate(cartId: $cartId, lines: $lines) {
         cart {
             id
-            totalQuantity
         }
         userErrors {
             field
@@ -118,7 +117,7 @@ export const GET_CART_LIST = gql`
         }
     }
 `
-export const GQL_GET_CART_LIST = gql`
+export const GQL_GET_CART_LIST = `
     query GetProductInCart($first:Int!,$id: ID!){
         cart(id: $id){
             id
@@ -174,59 +173,6 @@ export const GQL_GET_CART_LIST = gql`
     }
 `
 
-
-/**
- * =============
- * USED
- * =============
- * @type {string}
- */
-export const __GQL_CART_INITIAL = `mutation cartCreate($input: CartInput!, $country: CountryCode = ZZ, $language: LanguageCode)
-  @inContext(country: $country, language: $language) {
-    cartCreate(input: $input) {
-      cart {
-        id
-        note
-        totalQuantity
-        __typename
-        lines(first: 10) {
-          edges {
-            node {
-              __typename
-              cost {
-                amountPerQuantity {
-                  amount
-                  currencyCode
-                }
-                compareAtAmountPerQuantity {
-                  amount
-                  currencyCode
-                }
-                totalAmount {
-                  amount
-                  currencyCode
-                }
-              }
-            }
-          }
-        }
-        attributes {
-          key
-          value
-          __typename
-        }
-        cost {
-          totalAmount {
-            amount
-          }
-        }
-      }
-      userErrors {
-        field
-        message
-      }
-    }
-  }`
 
 /**
  * @name CART_INITIAL

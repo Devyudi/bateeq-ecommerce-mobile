@@ -35,18 +35,19 @@ export class GqlCart extends MutationGql{
         // return this.mutation()
     }
 
-  /**
-   * @name reset
-   * @returns {[Error,null]|[null,{data: any, networkStatus: NetworkStatus, error: ApolloError, loading: boolean}]}
-   */
-  reset() {
-    try {
-      this.eventName = CART_CLEAR;
-      return this.query();
-    } catch (err) {
-      return [err, null];
+    /**
+     * @name reset
+     * @returns {[Error,null]|[null,{data: any, networkStatus: NetworkStatus, error: ApolloError, loading: boolean}]}
+     */
+    reset(){
+        try{
+            this.eventName = CART_CLEAR
+            return this.query()
+        }catch(err){
+            return [ err, null ]
+        }
     }
-  }
+
 
     /**
      * @name remove
@@ -62,16 +63,17 @@ export class GqlCart extends MutationGql{
     }
 
 
-  /**
-   * @name putQty
-   * @returns {[Error,null]|[null,{data: any, networkStatus: NetworkStatus, error: ApolloError, loading: boolean}]|*[]}
-   */
-  putQty() {
-    try {
-      this.eventName = CART_PUT_QTY;
-      return this.mutation();
-    } catch (err) {
-      return [err, null];
+    /**
+     * @name putQty
+     * @returns {[Error,null]|[null,{data: any, networkStatus: NetworkStatus, error: ApolloError, loading: boolean}]|*[]}
+     */
+    putQty(){
+        try{
+            this.eventName = CART_PUT_QTY
+            return this.mutation()
+        }catch(err){
+            return [ err, null ]
+        }
     }
-  }
+
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
+import {ScrollView} from 'react-native';
 import CartItem from '../../components/CartItem';
 import pic3 from '../../assets/images/shop/pic3.png';
 import {connect} from "react-redux";
@@ -17,7 +17,7 @@ const CartData = [
   },
 ];
 
-function OnDelivery() {
+const OnDelivery = () => {
   return (
     <ScrollView>
       {CartData.map((data, index) => (
@@ -36,7 +36,7 @@ function OnDelivery() {
       ))}
     </ScrollView>
   );
-}
+};
 
 export default connect(({})=> {
 
